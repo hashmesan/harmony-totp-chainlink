@@ -1,0 +1,8 @@
+name: 2FA Chainlink Wallet
+description: 2FA Adapter for wallet creation
+node_identifier: wallet-2fa
+platforms:
+  - AWS Lambda
+  - GCP Functions
+parameters:
+  - operation

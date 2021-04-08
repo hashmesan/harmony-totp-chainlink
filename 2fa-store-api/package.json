@@ -1,0 +1,17 @@
+{
+  "name": "2fa-store-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node -e 'require(\"./index.js\").server()'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@chainlink/ea-bootstrap": "0.0.1",
+    "@chainlink/external-adapter": "0.2.3",
+    "express": "^4.17.1"
+  }
+}
