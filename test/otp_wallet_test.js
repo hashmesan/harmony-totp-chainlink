@@ -1,4 +1,4 @@
-const OTPWallet = artifacts.require("OTPWallet");
+const TOTPWallet = artifacts.require("TOTPWallet");
 const ethers = require("ethers");
 var merkle = require("../lib/merkle.js");
 var BN = web3.utils.BN;
@@ -13,8 +13,6 @@ function getTOTP(counter) { return totp("JBSWY3DPEHPK3PXP", {period: DURATION, c
 
 contract("OTPWallet", accounts => {
     it("should match properly", async () => {
-        console.log(getTOTP(1000));
-
         //const leaves = [h16(padNumber('0x1')),h16(padNumber('0x2')),h16(padNumber('0x3')),h16(padNumber('0x4'))];
         var leaves = [];
         // 1year / 300 ~= 105120
@@ -22,8 +20,11 @@ contract("OTPWallet", accounts => {
         // 1609459200 is 2021-01-01 00:00:00 -- 
         // to save space, we're going to start from counter above!
         var startCounter = 1609459200 / DURATION;
+        console.log("Start counter=", startCounter);
+
         for ( var i=0; i < Math.pow(2, 17); i++) {
-            leaves.push(h16(getTOTP(startCounter+i)));
+            //console.log(i, web3.utils.padRight(getTOTP(startCounter+i),6));
+            leaves.push(h16(padNumber(web3.utils.toHex(getTOTP(startCounter+i)))));
         }
 
         const root = merkle.reduceMT(leaves);
@@ -32,11 +33,13 @@ contract("OTPWallet", accounts => {
         //console.log("leaves=", leaves);
 
         var currentCounter = Math.floor(((Date.now() / 1000) - 1609459200) / DURATION);
-        console.log("CurrentCounter=", currentCounter);
+        var currentOTP = getTOTP(startCounter + currentCounter);
 
-        var proof = merkle.getProof(leaves, currentCounter, padNumber('0x3'))
+        console.log("CurrentCounter=", currentCounter, currentOTP);
+
+        var proof = merkle.getProof(leaves, currentCounter, padNumber(web3.utils.toHex(currentOTP)))
         console.log(proof)
-        this.testWallet = await OTPWallet.new(root, 3, DURATION);
+        this.testWallet = await TOTPWallet.new(root, 17, DURATION, 1609459200);
         console.log("counter=", (await this.testWallet.getCurrentCounter()).toString());
 
         var receipt = await this.testWallet._reduceConfirmMaterial(proof[0], proof[1]);

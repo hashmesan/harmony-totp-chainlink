@@ -12,6 +12,9 @@
   "dependencies": {
     "@chainlink/ea-bootstrap": "0.0.1",
     "@chainlink/external-adapter": "0.2.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "js-sha256": "^0.9.0",
+    "node-2fa": "^2.0.2",
+    "totp-generator": "^0.0.9"
   }
 }

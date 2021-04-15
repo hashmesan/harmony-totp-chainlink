@@ -1,5 +1,6 @@
 var AWS = require("aws-sdk");
 var uuid = require('node-uuid');
+var crypto = require('crypto');
 
 AWS.config.update({
   region: "us-east-1",
@@ -11,7 +12,7 @@ const table_request = "TOTP-request";
 const table_final = "TOTP";
 
 function insert_request(secret, callback) {
-    var receipt = uuid.v1();
+    var receipt =  crypto.createHash('md5').update(uuid.v1()).digest("hex");
     var params = {
         TableName:table_request,
         Item:{
@@ -67,9 +68,27 @@ function insert_totp_by_receipt(receipt, wallet, callback) {
     });
 }
 
+function get_secret_by_address(address, callback) {
+    docClient.get({
+        TableName: table_final,
+        Key: {
+            "wallet" : address
+        }
+    }, function(err, data) {
+        if (err) {
+            console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2))
+            callback("not found", null)
+        } else {
+            console.log("GetItem succeeded:", JSON.stringify(data, null, 2))
+            callback(null, data["Item"]["secret"]);
+        }
+    });
+}
+
 module.exports = {
     insert_request, 
-    insert_totp_by_receipt
+    insert_totp_by_receipt,
+    get_secret_by_address
 }
 
 // insert_request("secret", (err,data) => {
