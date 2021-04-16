@@ -1,5 +1,10 @@
 # Harmony 2FA-Chainklink Wallet
 
+## DEMO
+
+Check out demo at [/webclient/dist](/webclient/dist). 
+Compatible with Ethereum networks & Harmony on Metamask.
+
 ## Wallet Creation
 
 1. User generates 2FA locally
