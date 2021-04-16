@@ -117,7 +117,7 @@ class ShowWallet extends Component {
                             </div>
 
                             {this.state.success && <div className="mt-4 alert alert-primary" role="alert">
-                                 Success: Transaction hash: <a target="_NEW" href={"https://rinkeby.etherscan.io/tx/"+ this.state.success.transactionHash}>{this.state.success.transactionHash}</a>
+                                 Success: Transaction hash: <a target="_NEW" href={"https://rinkeby.etherscan.io/tx/"+ this.state.success.tx}>{this.state.success.tx}</a>
                             </div>}
                             {this.state.err && <div className="mt-4 alert alert-danger" role="alert">
                                  Error: {this.state.err} <a target="_NEW" href={"https://rinkeby.etherscan.io/address/"+ this.props.wallet}>{this.props.wallet}</a>

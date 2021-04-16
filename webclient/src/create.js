@@ -19,7 +19,7 @@ class Create extends Component {
         const config = {
             name: encodeURIComponent("SmartWallet"),
             account: encodeURIComponent("User"),
-            step: encodeURIComponent("120"),
+            step: encodeURIComponent(this.state.duration),
         }
 
         const bin = crypto.randomBytes(20);

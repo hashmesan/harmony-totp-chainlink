@@ -40,7 +40,7 @@ class MainScreen extends Component {
             <div>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 d-flex justify-content-center">
                 <span className="navbar-text ">
-                    TOTP Smart Contract Demo
+                    TOTP Smart Wallet Demo
                 </span>
                 </nav>
                 <main role="main" className="container" style={{"maxWidth": 700}}>

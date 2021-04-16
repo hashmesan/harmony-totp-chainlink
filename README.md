@@ -73,9 +73,7 @@ Relayer: https://etherscan.io/address/0xa1a1224e9071470ab12a8df7626d4fe7789a039d
 
 10. Relayer in front of the create secret call.
 
-
 ----------------------------------
-
 
 Use case:  simple case
 1. Generate OTP secret & wallet on browser.
@@ -88,3 +86,18 @@ Use case: Export wallet to phone
 2. Scans the OTP secret on phone google authenticator
 3. Open "Harmony" smart wallet app, scans in OTP secret / pregenerate the keys
 4. Enters code on phone & phone validates code + grab the merkel proof (other codes), submits blockchain.
+
+
+## Setup WebClient
+
+```
+yarn (at the base level)
+cd webclient
+yarn
+yarn dev
+```
+
+Visit http://localhost:8082
+
+
+Webclient hardcoded to rinkeby.
