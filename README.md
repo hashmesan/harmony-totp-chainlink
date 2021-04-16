@@ -1,6 +1,6 @@
 # Harmony 2FA-Chainklink Wallet
 
-## DEMO
+## Webclient
 
 Check out demo at [https://hashmesan.github.io/harmony-totp/webclient/dist](https://hashmesan.github.io/harmony-totp/webclient/dist). 
 Compatible with Ethereum networks & Harmony on Metamask.
