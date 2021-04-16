@@ -2,7 +2,7 @@
 
 ## DEMO
 
-Check out demo at [/webclient/dist](/webclient/dist). 
+Check out demo at [https://hashmesan.github.io/harmony-totp/webclient/dist](https://hashmesan.github.io/harmony-totp/webclient/dist). 
 Compatible with Ethereum networks & Harmony on Metamask.
 
 ## Wallet Creation
